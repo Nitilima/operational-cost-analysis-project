@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from app.models.cost import Cost
 from app.services.cost_service import add_cost, list_costs, analysys_cost
+from fastapi.responses import StreamingResponse
 
 router = APIRouter()
 
@@ -13,12 +14,14 @@ async def create_cost(cost: Cost):
 
 @router.get("/costs")
 async def get_costs():
-    return await list_costs()
+    costs = await list_costs()
+    return costs
 
 
 @router.get("/analysys")
 async def get_analysys():
-    resume = await analysys_cost()
-    if resume is None:
+    img = await analysys_cost()
+    if not img:
         raise HTTPException(status_code=404, detail="Nenhum dado encontrado")
-    return {"resumo": resume}
+    
+    return StreamingResponse(img, media_type="image/png")
