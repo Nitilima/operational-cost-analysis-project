@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Adicionar Custo</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'custos/style.css' %}">
+</head>
+
+<body>
+    <div class="main">
+        <h1>Adicionar Custo</h1>
+        <div>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn-save" type="submit">Salvar</button>
+                <a href="{% url 'listar_custos' %}">Voltar</a>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

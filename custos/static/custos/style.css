@@ -1,0 +1,80 @@
+body {
+    font-family: Arial, sans-serif;
+    /* background-color: #f4f4f4; */
+    background-color: #26323e;
+    margin: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: #fff;
+}
+
+input[type="text"] {
+    background: #34404c;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    padding: 8px 12px;
+    color: #fff;
+}
+
+input#id_valor {
+    background: #34404c;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    padding: 8px 12px;
+    color: #fff;
+}
+
+input#id_data {
+    background: #34404c;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    padding: 8px 12px;
+    color: #fff;
+}
+
+label {
+    color: #fff;
+}
+
+li {
+    color: #fff;
+    border-bottom: 2px solid;
+    padding: 10px;
+}
+
+.ul-list {
+    list-style: none;
+    background: #34404c;
+    padding: 20px;
+    display: inline-block;
+    border-radius: 8px;
+    /* box-shadow: 0px 0px 10px #ccc; */
+}
+
+button.btn-save {
+    text-decoration: none;
+    background: #83d6cc;
+    color: #000;
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+    background: #83d6cc;
+    color: #000;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+form {
+    background: #34404c;
+    padding: 20px;
+    display: inline-block;
+    border-radius: 8px;
+    /* box-shadow: 0px 0px 10px #ccc; */
+}

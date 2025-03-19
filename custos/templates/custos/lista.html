@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lista de Custos</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'custos/style.css' %}">
+</head>
+
+<body>
+    <div class="main">
+        <h1>Lista de Custos</h1>
+
+
+        <div>
+            <form method="GET">
+                <input type="text" name="categoria" placeholder="Filtrar por categoria">
+                <button class="btn-save" type="submit">Filtrar</button>
+            </form>
+        </div>
+        <div>
+            <ul class="ul-list">
+                {% for custo in custos %}
+                <li>{{ custo.categoria }} - R$ {{ custo.valor }} - {{ custo.data }}</li>
+                {% empty %}
+                <li>Nenhum custo cadastrado.</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <a href="{% url 'adicionar_custo' %}">Adicionar Novo Custo</a>
+
+            <a href="{% url 'grafico_gastos' %}">Ver Gráfico</a>
+        </div>
+    </div>
+</body>
+
+</html>

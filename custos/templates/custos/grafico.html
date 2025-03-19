@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gráfico de Gastos</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'custos/style.css' %}">
+</head>
+<body>
+    <h1>Gráfico de Gastos</h1>
+
+    {% if grafico %}
+        <img src="{{ grafico }}" alt="Gráfico de Gastos">
+    {% else %}
+        <p>Nenhum dado disponível para gerar gráfico.</p>
+    {% endif %}
+
+    <br>
+    <a href="{% url 'listar_custos' %}">Voltar</a>
+</body>
+</html>

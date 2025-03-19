@@ -1,0 +1,10 @@
+# Ignorar __pycache__ em qualquer lugar no projeto
+__pycache__/
+
+# Ignorar a pasta venv
+**/venv/
+
+# Ignorar a pasta .vscode
+**/.vscode/
+
+.env
