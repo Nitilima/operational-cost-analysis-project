@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from app.models.cost import Cost
-from app.services.cost_service import add_cost, list_costs, analysys_cost
+from app.services.cost_service import add_cost, list_costs, analysys_cost, delete_cost
 from fastapi.responses import StreamingResponse
 
 router = APIRouter()
@@ -11,6 +11,9 @@ async def create_cost(cost: Cost):
     await add_cost(cost)
     return {"message": "Custo adicionado"}
 
+@router.delete("/custos/{cost_id}")
+async def del_cost(cost_id: str):
+    return await delete_cost(cost_id)
 
 @router.get("/costs")
 async def get_costs():

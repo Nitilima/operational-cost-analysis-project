@@ -5,15 +5,28 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from io import BytesIO
+from fastapi import HTTPException
+from bson import ObjectId
 
 
 async def add_cost(custo: Cost):
-    await collection.insert_one(custo.model_dump())
+    result = await collection["costs"].insert_one(custo.model_dump(exclude={"id"}))
+    
+    custo.id = str(result.inserted_id)
+    return custo
 
 
 async def list_costs() -> List[Cost]:
-    costs = await collection.find({}, {"_id": 0}).to_list(100)
-    return costs
+    costs = await collection.find({}, {"_id": 1}).to_list(100)
+    return [Cost(**{**cost, "id": str(cost["_id"])}) for cost in costs]
+
+async def delete_cost(cost_id: str):
+    result = await collection.delete_one({"_id": ObjectId(cost_id)})
+
+    if result.deleted_count == 0:
+        raise HTTPException(status_code = 404, detail='Não encontrado')
+    
+    return{"message", "Deletado"}
 
 
 async def analysys_cost():
@@ -28,7 +41,7 @@ async def analysys_cost():
     resume = df.groupby("categoria")["valor"].sum().to_dict()
     
     df_resume = pd.DataFrame(resume.items(), columns=["Categoria", "Valor"])
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(19, 10))
     sns.barplot(x="Categoria", y="Valor", data=df_resume, palette="Blues_d")
     plt.title("Resumo dos Custos por Categoria")
     plt.xlabel("Categoria")

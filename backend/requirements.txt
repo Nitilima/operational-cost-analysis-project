@@ -10,3 +10,4 @@ python-jose
 fastapi[all]
 seaborn
 matplotlib
+motor
